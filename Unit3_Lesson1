@@ -1,0 +1,57 @@
+#Greg was 14, Marcia was 12, Peter was 11, Jan was 10, Bobby was 8, and Cindy was 6 
+#when they started playing the Brady kids on The Brady Bunch. 
+#Cousin Oliver was 8 years old when he joined the show. 
+#What are the mean, median, and mode of the kids' ages when they first appeared on the show? 
+#What are the variance, standard deviation, and standard error?
+def calcs(data):
+    mean = data.mean().Age
+    median = data.median().Age
+    (values, counts) = np.unique(data['Age'], return_counts=True)
+    # The location in the values list of the most-frequently-occurring element.
+    ind = np.argmax(counts)
+    # The most frequent element.
+    mode = values[ind]
+    var = data.var().Age
+    std = data.std().Age
+    stderr = np.std(data['Age'], ddof=1)/np.sqrt(len(data['Name']))
+    answers = pd.DataFrame()
+    answers['Type'] = ['Mean', 'Median', 'Mode', 'Variance', 'Standard_Deviation', 'Standard_Error']
+    answers['Value'] = [mean, median, mode, var, std, stderr]
+    return answers
+import pandas as pd
+import numpy as np
+bb = pd.DataFrame()
+bb['Name'] = ['Greg', 'Marcia', 'Peter', 'Jan', 'Bobby', 'Cindy', 'Oliver']
+bb['Age'] = [14, 12, 11, 10, 8, 6, 8]
+statement = 'The Variance is {} and the Standard Error is {}'
+bb.describe()
+import statistics
+mean = bb.mean().Age
+median = bb.median().Age
+mode = statistics.mode(bb['Age'])
+var = bb.var().Age
+std = bb.std().Age
+stderr = np.std(bb['Age'], ddof=1)/np.sqrt(len(bb['Name']))
+answers = pd.DataFrame()
+answers['Type'] = ['Mean', 'Median', 'Mode', 'Variance', 'Standard_Deviation', 'Standard_Error']
+answers['Value'] = [mean, median, mode, var, std, stderr]
+print(statement.format(var, stderr))
+print('''
+The best estimate of central tendency would be the mean and for variance it would be the Standard Deviation because we could see the average age for the kids and how much it can change''')
+answers
+
+#Answer 3
+bb.at[5,'Age']=7
+print(bb)
+calcs(bb)
+
+#Answer 4
+bb.at[6,'Name']='Jessica'
+bb.at[6,'Age']=1
+calcs(bb)
+
+#Answer 5 - Around 16% of americans still like the show
+encuesta = pd.DataFrame()
+encuesta['Name']=['TV Guide', 'EW', 'PCT', 'SFP']
+encuesta['Age']=[.2, .23, .17, .05]
+calcs(encuesta)
