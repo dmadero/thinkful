@@ -1,0 +1,15 @@
+P(H) = 1/2
+P(T) = 1/2
+P(HTTH) = P(H)*P(T)*P(T)*P(H) = .0625
+P(HHHH) = .0625
+P(TTHH) = .0625
+
+Women = 24
+Men = 21
+Probability of not choosing a man = 24/45
+
+P(Crash) = .005%
+P(Travel) = 10%
+P(Travel | Crash) = 10% * (10%*.005%)
+
+The people that did the survey spent more time in the website just by doing the survey.
